@@ -1,8 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Auth;
 use App\Models\Review;
+use App\Models\Movie;
+
 use Illuminate\Http\Request;
 
 class ReviewController extends Controller
@@ -26,9 +28,18 @@ class ReviewController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request, Movie $movie )
     {
-        //
+        $request->validate([
+            'review' => 'required'
+        ]); 
+        
+        Review::create([
+            'user_id' => Auth::user()->id,
+            'movie_id' => $movie->id,
+            'content' => $request->review
+        ]);
+        return back();
     }
 
     /**

@@ -18,7 +18,7 @@
                         <h3><a href ="{{ route('movies.show', $movies->id) }}">{{ $movies->title }}</a></h3>
                         <div class="text-danger">
                             @for ($i = 1; $i <= $movies->rating_star; $i++)
-                                <i class="fas fa-stsar"></i>
+                                <i class="fas fa-star"></i>
                             @endfor
                         </div>
                         <p>{{ Str::limit($movies->description, 100) }}</p>

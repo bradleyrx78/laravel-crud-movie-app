@@ -34,7 +34,22 @@ class MovieController extends Controller
             'image' => 'required',
             'rating_star' => 'required',
             'description' => 'required'
+
+            
         ]);
+            /*
+            if ($request->hasFile('image')){
+                $file =$request->file('image');
+                $extension = $file->getClientOriginalExtension;
+                $filename = time() . '.' . $extension;
+                $file->move('uploads/imgsource/', $filename);
+                $imgsource->image = $filename;
+            }else {
+                return $request;
+                $imgsource->image = '';
+            }
+            $imgsource->save();
+            */
 
         $movie = Movie::create($request->all());
 

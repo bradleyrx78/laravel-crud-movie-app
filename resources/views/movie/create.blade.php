@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="card my-5">
-        <div class="card-body">
+        <div class="card-body m-5">
             <h1>Upload new movie</h1>
             <form action="{{ route('movies.store') }}" method="POST">
                 @csrf
