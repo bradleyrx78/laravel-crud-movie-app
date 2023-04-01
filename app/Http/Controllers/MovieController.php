@@ -34,23 +34,8 @@ class MovieController extends Controller
             'image' => 'required',
             'rating_star' => 'required',
             'description' => 'required'
-
-            
         ]);
-            /*
-            if ($request->hasFile('image')){
-                $file =$request->file('image');
-                $extension = $file->getClientOriginalExtension;
-                $filename = time() . '.' . $extension;
-                $file->move('uploads/imgsource/', $filename);
-                $imgsource->image = $filename;
-            }else {
-                return $request;
-                $imgsource->image = '';
-            }
-            $imgsource->save();
-            */
-
+           
         $movie = Movie::create($request->all());
 
         return redirect()->route('movies.index', $movie->id);
@@ -68,8 +53,8 @@ class MovieController extends Controller
      * Show the form for editing the specified resource.
      */
     public function edit(Movie $movie)
-    {
-        //
+    {   
+        return view('movie.update', compact('movie'));
     }
 
     /**
@@ -77,14 +62,22 @@ class MovieController extends Controller
      */
     public function update(Request $request, Movie $movie)
     {
-        //
+        $movie = Movie::find($movie->id);
+        $movie-> title = $request -> input('title');
+        $movie-> image = $request -> input('image');
+        $movie-> description = $request -> input('description');
+        $movie-> rating_star = $request -> input('rating_star');
+        $movie-> update();
+        return redirect()->route('movies.show', $movie->id);
+
     }
 
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(Movie $movie)
-    {
-        //
+    {   
+        $movie->delete();
+        return redirect()->route('movies.index');
     }
 }

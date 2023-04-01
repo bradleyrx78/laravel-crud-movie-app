@@ -10,7 +10,7 @@ class Movie extends Model
     use HasFactory;
     protected $fillable = ['title', 'image', 'description','rating_star'];
 
-    public function movie(){
+    public function reviews(){
         return $this->hasMany(Review::class);
     }
 

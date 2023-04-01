@@ -1,14 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-use Auth;
-use App\Models\Review;
-use App\Models\Movie;
 
+use App\Models\Admin;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth as FacadesAuth;
 
-class ReviewController extends Controller
+class AdminController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -29,24 +26,15 @@ class ReviewController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request, Movie $movie )
+    public function store(Request $request)
     {
-        $request->validate([
-            'review' => 'required'
-        ]); 
-        
-        Review::create([
-            'user_id' => FacadesAuth::user()->id,
-            'movie_id' => $movie->id,
-            'content' => $request->review
-        ]);
-        return back();
+        //
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Review $review)
+    public function show(Admin $admin)
     {
         //
     }
@@ -54,7 +42,7 @@ class ReviewController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Review $review)
+    public function edit(Admin $admin)
     {
         //
     }
@@ -62,7 +50,7 @@ class ReviewController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Review $review)
+    public function update(Request $request, Admin $admin)
     {
         //
     }
@@ -70,7 +58,7 @@ class ReviewController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Review $review)
+    public function destroy(Admin $admin)
     {
         //
     }
