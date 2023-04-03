@@ -3,8 +3,10 @@
 @section('content')
     <div class="card my-5">
         <div class="card-body m-5">
-            <h1>Edit this movie</h1>
-            <form action="{{ route('movies.update', $movie->id) }}" method="POST">
+            <h1>Edit movie information</h1>
+            <img src="{{ asset('/storage/images/movies/'.$movie->image)}}" class="card-image-top">
+
+            <form action="{{ route('movies.update', $movie->id) }}" method="POST" class="mt-3" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">
                     <label>Title</label>
@@ -13,7 +15,7 @@
 
                 <div class="form-group">
                     <label>Image</label>
-                    <input type="text" class="form-control" name="image" value="{{ $movie->image }}">
+                    <input type="file" class="form-control" name="image" value="{{ $movie->image }}">
                 </div>
 
                 <div class="form-group">

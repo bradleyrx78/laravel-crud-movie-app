@@ -31,14 +31,25 @@ class MovieController extends Controller
     {
         $request->validate([
             'title' => 'required',
-            'image' => 'required',
             'rating_star' => 'required',
             'description' => 'required'
         ]);
-           
-        $movie = Movie::create($request->all());
 
-        return redirect()->route('movies.index', $movie->id);
+        $input = $request->all();
+        if($request->hasFile('image')){
+            
+            $destination_path = 'public/images/movies';
+            $image = $request->file('image');
+            $image_name = $image->getClientOriginalName();
+            $path = $request->file('image')->storeAs($destination_path,$image_name);
+
+            $input['image'] = $image_name;
+
+        }
+           
+        Movie::create($input);
+
+        return redirect()->route('movies.index');
     }
 
     /**
@@ -62,12 +73,28 @@ class MovieController extends Controller
      */
     public function update(Request $request, Movie $movie)
     {
-        $movie = Movie::find($movie->id);
-        $movie-> title = $request -> input('title');
-        $movie-> image = $request -> input('image');
-        $movie-> description = $request -> input('description');
-        $movie-> rating_star = $request -> input('rating_star');
-        $movie-> update();
+
+        $request->validate([
+            'title' => 'required',
+            'rating_star' => 'required',
+            'description' => 'required'
+        ]);
+
+        $input = $request->all();
+        if($request->hasFile('image')) {
+            
+            $destination_path = 'public/images/movies';
+            $image = $request->file('image');
+            $image_name = $image->getClientOriginalName();
+            $path = $request->file('image')->move($destination_path, $image_name);
+
+            $input['image'] = $image_name;
+
+        }else{
+            unset($input['image']);
+        }
+
+        Movie::find($movie->id)->update($input);
         return redirect()->route('movies.show', $movie->id);
 
     }

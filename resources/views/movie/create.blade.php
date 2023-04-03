@@ -4,7 +4,7 @@
     <div class="card my-5">
         <div class="card-body m-5">
             <h1>Upload new movie</h1>
-            <form action="{{ route('movies.store') }}" method="POST">
+            <form action="{{ route('movies.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">
                     <label>Title</label>
@@ -13,7 +13,7 @@
 
                 <div class="form-group">
                     <label>Image</label>
-                    <input type="text" class="form-control" name="image">
+                    <input type="file" class="form-control" name="image">
                 </div>
 
                 <div class="form-group">

@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="card mx-auto">
-        <img src="{{ $movie->image }}" class="card-image-top">
+    <div class="card">
+        <img src="{{ asset('/storage/images/movies/'.$movie->image)}}" width="360"class="card-image-top">
         <div class="card-body">
             <h1 class="m-2">{{ $movie->title }}</h1>
             <div class="text-danger m-2">
@@ -25,7 +25,7 @@
         </div>
     </div>
 
-    <div class="card mx-auto ml-3">
+    <div class="card mt-3">
         <div class="card-body">
             <form action="{{ route('movies.reviews.store', $movie->id)}}" method="POST">
                 @csrf
@@ -35,7 +35,7 @@
         </div>
     </div>
 
-    <div class="card mx-auto mt-3">
+    <div class="card mt-3">
         <h2 class="m-2">Reviews</h2>
         <ul class = "list-group list-group-flush">
             <div class="card-body">
