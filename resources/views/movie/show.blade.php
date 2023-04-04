@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="card">
+    <div class="card my-5">
         <img src="{{ asset('/storage/images/movies/'.$movie->image)}}" width="360"class="card-image-top">
         <div class="card-body">
             <h1 class="m-2">{{ $movie->title }}</h1>
@@ -42,8 +42,10 @@
                 @foreach ( $movie->reviews as $review)
                     <li class="list-group-item">
                         <b>{{ $review->user->name }} : </b>{{ $review->content }}
-                        <form action="#" method="POST">
-                            <button  type="submit" class="btn btn-link text-danger">Delete</button>
+                        <form action="{{ route('movies.reviews.destroy', $review->id) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-link text-danger">Delete</button>
                         </form>
                     </li>
                 @endforeach

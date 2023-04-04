@@ -72,6 +72,10 @@ class ReviewController extends Controller
      */
     public function destroy(Review $review)
     {
-        //
+        if($review->user->id !== FacadesAuth::user()->id){
+            abort(501);
+        }
+        $review->delete();
+        return redirect()->back();
     }
 }

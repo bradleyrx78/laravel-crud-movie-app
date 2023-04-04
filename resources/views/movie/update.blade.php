@@ -27,7 +27,11 @@
                     <label>Description</label>
                     <textarea class="form-control" name="description" rows=10>{{ $movie->description }}</textarea >
                 </div>
-                <button type="submit" class="btn btn-primary mt-2 float-left">Submit</button>
+                <button type="submit" class="btn btn-primary mt-2 float-left">Update</button>
+            </form>
+
+            <form action="{{ route('movies.show' , $movie->id) }}" class="mt-3">
+                <button type="submit" class="btn btn-primary mt-2 float-left">Cancel</button>
             </form>
         </div>
 
