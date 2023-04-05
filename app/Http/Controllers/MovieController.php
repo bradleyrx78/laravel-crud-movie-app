@@ -13,7 +13,7 @@ class MovieController extends Controller
     public function index()
     {   
         $movie = Movie::all();
-        return view('movie.index', compact('movie'));
+        return view('admin.movielist', compact('movie'));
     }
 
     /**
@@ -21,7 +21,7 @@ class MovieController extends Controller
      */
     public function create()
     {
-        return view('movie.create');
+        return view('admin.uploadmovie');
     }
 
     /**
@@ -49,7 +49,7 @@ class MovieController extends Controller
            
         Movie::create($input);
 
-        return redirect()->route('movies.index');
+        return redirect()->route('admin.index');
     }
 
     /**
@@ -65,7 +65,7 @@ class MovieController extends Controller
      */
     public function edit(Movie $movie)
     {   
-        return view('movie.update', compact('movie'));
+        return view('admin.editmovie', compact('movie'));
     }
 
     /**
@@ -95,7 +95,7 @@ class MovieController extends Controller
         }
 
         Movie::find($movie->id)->update($input);
-        return redirect()->route('movies.show', $movie->id);
+        return redirect()->route('admin.showmovie', $movie->id);
 
     }
 
@@ -105,6 +105,18 @@ class MovieController extends Controller
     public function destroy(Movie $movie)
     {   
         $movie->delete();
-        return redirect()->route('movies.index');
+        return redirect()->route('admin.indexmovie');
     }
+
+    public function showAdminMovie(Movie $movie){
+        return view('admin.showmovie', compact('movie'));
+    }
+
+    public function showAdminList(){
+
+        $movie = Movie::all();
+        return view('admin.movielist', compact('movie'));
+    }
+
+
 }

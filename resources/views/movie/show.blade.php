@@ -11,17 +11,6 @@
                 @endfor
             </div>
             <p class="m-2">{{ $movie->description }}</p>
-
-            <form action={{ route('movies.edit', $movie->id) }}>
-                <button type="submit" class="btn btn-link text-danger">Update</button>
-            </form>
-
-            <form action={{ route('movies.delete', $movie->id) }} method="POST">
-                @csrf
-                @method('DELETE')
-                <button type="submit" class="btn btn-link text-danger">Delete</button>
-            </form>
-
         </div>
     </div>
 
