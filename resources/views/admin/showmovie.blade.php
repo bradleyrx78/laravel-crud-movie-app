@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'uu')
+@section('title', 'Mubi')
 
 @section('content')
     <div class="card my-5">
@@ -15,13 +15,13 @@
             <p class="m-2">{{ $movie->description }}</p>
 
             <form action={{ route('movies.edit', $movie->id) }}>
-                <button type="submit" class="btn btn-link text-danger">Update</button>
+                <button type="submit" class="btn btn-outline-primary" for="btn-check-outlined">Update</button>
             </form>
 
             <form action={{ route('movies.delete', $movie->id) }} method="POST">
                 @csrf
                 @method('DELETE')
-                <button type="submit" class="btn btn-link text-danger">Delete</button>
+                <button type="submit" class="btn btn-outline-danger mt-2" for="danger-outlined">Delete</button>
             </form>
 
         </div>
@@ -32,7 +32,7 @@
             <form action="{{ route('movies.reviews.store', $movie->id)}}" method="POST">
                 @csrf
                 <input type="text" name="review" class="form-control" placeholder="Write your review">
-                <button type="submit" class="btn btn-primary mt-2 float-right">Submit</button>
+                <button type="submit" class="btn btn-outline-success mt-2" for="success-outlined">Submit</button>
             </form>
         </div>
     </div>
@@ -47,7 +47,7 @@
                         <form action="{{ route('movies.reviews.destroy', $review->id) }}" method="POST">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-link text-danger">Delete</button>
+                            <button type="submit" class="btn btn-outline-danger mt-2" for="danger-outlined">Delete</button>
                         </form>
                     </li>
                 @endforeach

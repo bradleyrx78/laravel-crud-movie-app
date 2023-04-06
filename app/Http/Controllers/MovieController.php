@@ -20,7 +20,7 @@ class MovieController extends Controller
      * Show the form for creating a new resource.
      */
     public function create()
-    {
+    {   
         return view('admin.uploadmovie');
     }
 
@@ -48,7 +48,6 @@ class MovieController extends Controller
         }
            
         Movie::create($input);
-
         return redirect()->route('admin.index');
     }
 

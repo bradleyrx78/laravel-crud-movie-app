@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 use Auth;
 use App\Models\Review;
 use App\Models\Movie;
-
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth as FacadesAuth;
+use Illuminate\Support\Facades\Facade;
 
 class ReviewController extends Controller
 {
@@ -30,16 +30,29 @@ class ReviewController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request, Movie $movie )
-    {
+    {   
         $request->validate([
             'review' => 'required'
         ]); 
-        
-        Review::create([
-            'user_id' => FacadesAuth::user()->id,
-            'movie_id' => $movie->id,
-            'content' => $request->review
+
+        $user_id = FacadesAuth::user()->id;
+        $movie_id = $movie->id;
+
+        $existing_review = Review::where([
+            'user_id' => $user_id,
+            'movie_id' => $movie_id
+        ])->first();
+
+        if ($existing_review) {
+            return back();
+        }
+
+        $review = Review::create([
+            'user_id' => $user_id,
+            'movie_id' => $movie_id,
+            'content' => $request->review,
         ]);
+
         return back();
     }
 
@@ -56,7 +69,7 @@ class ReviewController extends Controller
      */
     public function edit(Review $review)
     {
-        //
+        return view('review.edit');
     }
 
     /**
@@ -64,7 +77,12 @@ class ReviewController extends Controller
      */
     public function update(Request $request, Review $review)
     {
-        //
+        $request->validate([
+            'content' => $request->review,
+        ]);
+
+        Review::find($review->id)->update(['content' => $request->review]);
+        return redirect()->back();
     }
 
     /**
@@ -72,8 +90,8 @@ class ReviewController extends Controller
      */
     public function destroy(Review $review)
     {
-        if($review->user->id !== FacadesAuth::user()->id){
-            abort(501);
+        if($review->user->id !== FacadesAuth::user()->id && !FacadesAuth::user()->isAdmin){
+            abort(403);
         }
         $review->delete();
         return redirect()->back();
