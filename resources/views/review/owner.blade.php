@@ -7,7 +7,13 @@
             <div class="card-body">
                 @foreach ( $movie->reviews->where('user_id', auth()->id()) as $review)
                     <li class="list-group-item">
+                        
                         <b>{{ $review->user->name }} : </b>{{ $review->content }}
+                        <div class="text-danger m-2">
+                            @for ($i = 1; $i <= $review->user_rating; $i++)
+                                <i class="fas fa-star"></i>
+                            @endfor
+                        </div>
                         <div>
                             <button type="submit" class="btn btn-outline-success mt-2" for="danger-outlined" data-bs-toggle="modal" data-bs-target="#editreview">Update</button>
                         </div>

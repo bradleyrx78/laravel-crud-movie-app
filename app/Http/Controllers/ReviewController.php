@@ -32,7 +32,7 @@ class ReviewController extends Controller
     public function store(Request $request, Movie $movie )
     {   
         $request->validate([
-            'review' => 'required'
+            'review' => 'required',
         ]); 
 
         $user_id = FacadesAuth::user()->id;
@@ -51,6 +51,7 @@ class ReviewController extends Controller
             'user_id' => $user_id,
             'movie_id' => $movie_id,
             'content' => $request->review,
+            'user_rating' => $request->user_rating,
         ]);
 
         return back();
@@ -81,7 +82,9 @@ class ReviewController extends Controller
             'content' => $request->review,
         ]);
 
-        Review::find($review->id)->update(['content' => $request->review]);
+        Review::find($review->id)->update([
+            'content' => $request->review,
+        ]);
         return redirect()->back();
     }
 

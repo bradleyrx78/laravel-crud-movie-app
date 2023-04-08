@@ -10,9 +10,17 @@
         <div class="modal-body">
             <form action="{{ route('movies.reviews.store', $movie->id)}}" method="POST" enctype="multipart/form-data">
                 @csrf
-                <input type="text" name="review" class="form-control" placeholder="Write your review">
+                <div class="form-group">
+                  <input type="text" name="review" class="form-control" placeholder="Write your review">
+                </div>
+
+                <div class="form-group mt-3">
+                  <input type="integer" class="form-control" name="user_rating" placeholder="Add Rating">
+                </div>
+
                 <button type="submit" class="btn btn-primary mt-2 float-right">Submit</button>  
             </form>
+            
         </div>
 
       </div>

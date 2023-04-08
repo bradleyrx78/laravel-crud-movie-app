@@ -26,7 +26,7 @@
 
         </div>
     </div>
-
+   
     <div class="card mt-3">
         <div class="card-body">
             <form action="{{ route('movies.reviews.store', $movie->id)}}" method="POST">
@@ -54,5 +54,8 @@
             </div>
         </ul>
     </div>
+  
+    </div>
 
 @endsection
+

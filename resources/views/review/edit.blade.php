@@ -9,14 +9,16 @@
 
         <div class="modal-body">
             @foreach ( $movie->reviews as $review )
+             
+              
             @endforeach
+
             <form action="{{ route('movies.reviews.update', $review->id)}}" method="POST" enctype="multipart/form-data">
-                @csrf
-                <input type="text" name="review" class="form-control" placeholder="Update your review">
-                <button type="submit" class="btn btn-primary mt-2 float-right">Submit</button>  
+              @csrf
+              <input type="text" name="review" class="form-control" placeholder="Update your review">
+              <button type="submit" class="btn btn-primary mt-2 float-right">Submit</button>  
             </form>
         </div>
-
       </div>
     </div>
 </div>
