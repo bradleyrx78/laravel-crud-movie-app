@@ -6,7 +6,7 @@
     <div class="card my-5">
         <div class="card-body m-5">
             <h1>Edit movie information</h1>
-            <img src="{{ asset('/storage/images/movies/'.$movie->image)}}" class="card-image-top">
+            <img src="{{ asset('/public/images/movies/'.$movie->image)}}" class="card-image-top">
 
             <form action="{{ route('movies.update', $movie->id) }}" method="POST" class="mt-3" enctype="multipart/form-data">
                 @csrf

@@ -4,7 +4,7 @@
 
 @section('content')
     <div class="card my-5">
-        <img src="{{ asset('/storage/images/movies/'.$movie->image)}}" width="360"class="card-image-top">
+        <img src="{{ asset('/public/images/movies/'.$movie->image)}}" width="360"class="card-image-top">
         <div class="card-body">
             <h1 class="m-2">{{ $movie->title }}</h1>
             <div class="text-danger m-2">

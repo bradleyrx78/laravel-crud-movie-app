@@ -311,7 +311,7 @@ return [
             'url'  => 'admin/blog',
             'can'  => 'manage-blog',
         ],
-        ['header' => 'account_settings'],
+        ['header' => 'Movie Management'],
         [
             'text'        => 'Dashboard',
             'url'         => 'admin/home',
@@ -330,13 +330,6 @@ return [
             'icon'        => 'far fa-fw fa-file',
             'label_color' => 'success',
         ],
-        [
-            'text'        => 'pages',
-            'url'         => '#',
-            'icon'        => 'far fa-fw fa-file',
-            'label_color' => 'success',
-        ],
-        
         
     ],
 

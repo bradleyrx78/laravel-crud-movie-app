@@ -13,7 +13,7 @@
             @foreach ($movie as $movies)
             <div class="col-md-3 pt-5">
                 <div class="card">
-                    <img src="{{ asset('/storage/images/movies/'.$movies->image)}}" height ="450"class="card-image-top">
+                    <img src="{{ asset('/public/images/movies/'.$movies->image)}}" height ="450"class="card-image-top">
                     <div class="card-body">
                         <h3><a href ="{{ route('movies.show', $movies->id) }}">{{ $movies->title }}</a></h3>
                         <div class="text-danger">
